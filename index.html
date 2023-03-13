@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Filipp Gareev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="style.css">
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue?module'
+
+    function MainApp() {
+      return {
+        $template: "#main-app",
+        isCurrentLanguageEng: true,
+        get squares_text () {
+          return this.isCurrentLanguageEng ? [['3.5+', 'years expirience'], ['600+', 'written tests']] : [['3.5+', 'года опыта'], ['600+', 'написанных тестов']]
+        },
+        get expiriences() {
+
+         return this.isCurrentLanguageEng ? [
+            {
+              title: "Assistagro",  
+              tags: ["ML Agrotech", "Web", "Backend", "Automation"],
+              position: "QA (automation)",
+              years: "2022 - current", 
+              advantages: ["Launched E2E testing project",
+                          "Made back-end's automated tests faster",
+                          "Took part in front-end development"
+              ]
+            },
+            {
+              title: "Rostelecom/Wink",
+              tags: ["VoD", "iOS", "Automation", "Manual"],
+              position: "QA (automation/manual)",
+              years: "2021-2022",
+              advantages: ["Wrote mobile application and tvOS application autotests", "Increased covereage of automation", "Started with SWIFT"]
+            },
+            {
+              title: "DSSL",
+              tags: ["CCTV", "Manual"],
+              position: "QA (manual)",
+              years: "2020-2021",
+              advantages: ["Automated processes so they became x1.5 faster"]
+            }
+          ] : 
+          [
+          {
+              title: "Ассистагро",  
+              tags: ["Агротех", "Web", "Backend", "Автоматизация"],
+              position: "QA (automation)",
+              years: "2022 - по нынешнее время", 
+              advantages: ["Запустил проект E2E автотестов",
+                          "Увеличил скорость прохождения backend тестов",
+                          "Принимал участие в разработке фронта"
+              ]
+            },
+            {
+              title: "Ростелеком/Wink",
+              tags: ["VoD", "iOS", "Автоматизация", "Ручное"],
+              position: "QA (automation/manual)",
+              years: "2021 - 2022",
+              advantages: ["Поддерживал проект автотестов на iOS и tvOS приложениях", "Повысил процент покрытия автотестами", "Писал автотесты на SWIFT"]
+            },
+            {
+              title: "DSSL",
+              tags: ["Видеонаблюдение", "Ручное"],
+              position: "QA (manual)",
+              years: "2020 - 2021",
+              advantages: ["Улучшил процессы тестирования так, что они стали быстрее"]
+            }
+          ]
+        },
+        skills: [
+          { name: 'Python', type: 'language' },
+          { name: 'Typescript', type: 'language' },
+          { name: 'SWIFT', type: 'language' },
+          { name: 'Playwright', type: 'framework' },
+          { name: 'Pytest', type: 'framework' },
+          { name: 'XCUITest', type: 'framework' },
+          { name: 'Vue', type: 'framework' },
+          { name: 'Postman', type: 'tool' },
+          { name: 'SQL', type: 'tool' },
+          { name: 'Git', type: 'tool' },
+          { name: 'MongoDB', type: 'tool' },
+          { name: 'CI/CD', type: 'tool' }
+        ],
+
+        get cvLink() {
+          return this.isCurrentLanguageEng ? './cv_en.pdf' : './cv_rus.pdf'
+        },
+
+        changeLanguage(index) {
+          this.isCurrentLanguageEng = index
+        }
+      }
+    }
+    createApp({MainApp}).mount()
+  </script>
+</head>
+
+<template id="main-app">
+  <main>
+
+    <div class="section" id="title-section">
+      <h1 class="title-section_title">QA Engineer (auto/manual)</h1>
+      <div class="title-section_language-toggle">
+        <div class="title-section_language-flag" @click="changeLanguage(false)" :data-active="!isCurrentLanguageEng">rus</div>
+        <div class="title-section_language-flag" @click="changeLanguage(true)" :data-active="isCurrentLanguageEng">eng</div>
+      </div>
+    </div>
+
+    <div class="section" id="name-section">
+      <p class="name-section_title">{{ isCurrentLanguageEng ? 'Filipp Gareev' : 'Филипп Гареев' }}
+        <span class="name-section_age">{{ isCurrentLanguageEng ? "29 y.o" : "29 лет"}}</span>
+      </p>
+    </div>
+
+    <div class="section" id="photo-section">
+        <a class="cta-button" href="https://t.me/filok94"> {{ isCurrentLanguageEng ? 'Hire' : 'Написать' }}</a>
+      <img class="photo-section_avatar" src="./image_1.png" alt="">
+    </div>
+
+    <div class="section" id="squares-section">
+      <div class="square-collection">
+        <div v-for="[i, word] of squares_text" class="square-item">
+          <span class="square-item_number">{{i}}</span>
+          <span class="square-item_span">{{word}}</span>
+        </div>
+        <div class="square-item square-item_collection">
+          <div class="v-cheap" v-for="i of skills" :class="{'v-cheap_tool': i.type === 'tool',
+                                                            'v-cheap_language': i.type === 'language',
+                                                            'v-cheap_framework': i.type === 'framework'}"
+          >{{ i.name }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="links-section">
+      <a href="https://github.com/filok94?tab=repositories" class="link-hoverable link-hoverable_github">
+      </a>
+      <a href="https://www.linkedin.com/in/filipp-gareev-908406199/" class="link-hoverable link-hoverable_linkedin">
+      </a>
+      <a href="https://t.me/filok94" class="link-hoverable link-hoverable_telegram">
+      </a>
+      <a :href="cvLink" class="link-hoverable_cv">CV</a>
+    </div>
+
+    <div class="section section_scrollable" id="experience-section">
+      <div class="experience-item" v-for="experience in expiriences">
+        <h3 class="experience-item_title">
+          <div class="experience-item_tag-container">
+            <div class="experience-item_tag" v-for="tag of experience.tags">{{tag}}</div>
+          </div>
+          {{experience.title}}
+          <br>
+          <span class="experience-item_year">{{experience.years}}</span>
+          <br>
+          <span class="experience-item_position">{{experience.position}}</span>
+        </h3>
+        <ul>
+          <li class="experience-item_advantages" v-for="advantage in experience.advantages">{{advantage}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section section_scrollable" id="about-section">
+      <h2 class="about_title">{{ isCurrentLanguageEng ? 'About' : 'Обо мне'}}</h2>
+      <p class="about_description">
+        {{ isCurrentLanguageEng ? 'I can launch test projects or join to existing one to take part in their maintenance.' : 'Могу запустить проект автотестов с нуля или присоединиться к существующему.' }}
+        <br>
+        <br>
+        {{ isCurrentLanguageEng ? "I write autotests on" : 'Пишу автотесты на'}} <strong>SWIFT</strong> {{ isCurrentLanguageEng ? 'for iOS and tVOS' : 'на iOS и tvOS'}}, <strong>Typescript + Playwright, Python + Pytest</strong> {{ isCurrentLanguageEng ? 'for API and E2E testing' : '- API и E2E тесты'}}.
+        <br>
+        <br>
+        {{ isCurrentLanguageEng ? 'I can help team in front-end development. Have an experience in Vue.' : 'Могу помочь команде в разработке фронта. Есть опыт работы с Vue.'}}
+        <br>
+        <br>
+        {{ isCurrentLanguageEng ? 
+          "I'm in love with history: from antiquity to the Middle Ages, I play football as a goalkeeper. I like to learn and apply new things: thus, I have already participated in the development, wrote applications for the front-end and back-end." 
+          : 
+          "Люблю историю от античности до средневековья, играю в футзал вратарём. Люблю изучать и применять новое: таким образом уже участвовал в разработке, написал собственное приложение."}}
+        <br>
+        <br>
+        {{ isCurrentLanguageEng ? 'I am ready for relocation, remote and office work.' : 'Готов к релокации, работе из дома или офиса.'}}
+      </p>
+    </div>
+  </main>
+</template>
+
+<body>
+  <div id="main-app" v-scope="MainApp()"></div>
+</body>
+</html>
