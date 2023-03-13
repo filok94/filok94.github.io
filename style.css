@@ -69,6 +69,16 @@ strong {
   scrollbar-width: none;
 }
 
+::-webkit-scrollbar {
+  width: .1px;
+  background: var(--dark-color);
+  border-radius: var(--large-radius);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: var(--large-radius);
+}
+
 #title-section {
   grid-column: 1/ span 6;
   grid-row: 1/2;
@@ -78,6 +88,7 @@ strong {
 
 .title-section_title {
   background-image: var(--gradient);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -181,16 +192,9 @@ strong {
   padding: 1.5rem;
 }
 
-.link-hoverable_telegram {
-  mask: url('./telegram.svg');
-}
-
-.link-hoverable_github {
-  mask: url('./github.svg');
-}
-
-.link-hoverable_linkedin {
-  mask: url('./linkedin.svg');
+svg {
+  width: 8rem;
+  aspect-ratio: 1/1;
 }
 
 .link-hoverable_cv {
@@ -201,19 +205,6 @@ strong {
 
 .link-hoverable_cv:hover {
   color: var(--primary-color);
-}
-
-.link-hoverable {
-  display: inline-block;
-  width: 8rem;
-  height: 8rem;
-  background: white;
-  mask-size: cover;
-  max-width: 100%;
-}
-
-.link-hoverable:hover {
-  background: var(--primary-color);
 }
 
 #squares-section {
@@ -247,8 +238,6 @@ strong {
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
-  overflow-y: scroll;
-  scrollbar-width: none;
 }
 
 .square-item_number {
@@ -273,7 +262,7 @@ strong {
   color: var(--black-color);
   box-shadow: var(--shadow-small);
   padding: 1rem;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   transition: .3s ease;
 }
 
@@ -377,6 +366,12 @@ strong {
 .about_description {
   color: var(--white-color);
   font-size: 2rem;
+}
+
+@media screen and (min-width: 1510px) {
+  .v-cheap {
+    font-size: 2.5rem;
+  }
 }
 
 @media screen and (min-width: 1920px) {
